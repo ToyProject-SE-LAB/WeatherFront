@@ -24,7 +24,7 @@
 
     @media (min-width: 768px) {
       .bd-placeholder-img-lg {
-        font-size: 3.5rem;
+        font-size: 3.0rem;
       }
     }
 
@@ -85,17 +85,14 @@
 
     .dropdown-toggle {
       color: white;
-      /* 버튼의 텍스트 색상을 하얀색으로 변경 */
     }
 
     .dropdown-toggle::after {
       color: white;
-      /* 드롭다운 기호의 색상도 하얀색으로 변경 */
     }
 
     .dropdown-toggle::before {
       color: white;
-      /* 드롭다운 기호의 색상도 하얀색으로 변경 */
     }
 
     .bd-mode-toggle {
@@ -104,6 +101,14 @@
 
     .bd-mode-toggle .dropdown-menu .active .bi {
       display: block !important;
+    }
+
+    .custom-margin{
+      margin-bottom: 0px;
+    }
+
+    .text-white-70 {
+      color: rgba(255, 255, 255, 0.7);
     }
   </style>
 </head>
@@ -240,7 +245,6 @@
       <div class="col-md-3 mb-2 mb-md-0">
       </div>
 
-<<<<<<< HEAD
       <header class="p-2 text-bg-dark">
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -280,10 +284,12 @@
         </div>
       </header>
 
-      <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
-        <div class="col-md-6 p-lg-5 mx-auto my-5">
-          <h1 class="display-3 fw-bold">Designed for engineers</h1>
-          <h3 class="fw-normal text-muted mb-3">Build anything you want with Aperture</h3>
+      <div class="position-relative overflow-hidden p-md-5 text-center bg-body-tertiary" style="background-image: url('./assets/cloude.JPG'); background-size: cover; background-position: center;">
+        <div class="col-md-6 p-lg-4 mx-auto my-5">
+          <i id="emoticon" class="fa-solid fa-cloud-sun text-white" style="font-size: 90px;"></i>
+          <h2 id ="temperature" class="fw-normal text-white" style="font-size: 50px; margin-top: 0; margin-bottom: 0; position: relative; left: 10px;">28°</h2>
+          <h3 id="location" class="fw-normal text-white" style="font-size: 20px; margin-top: 0; margin-bottom: 0;">cloudy</h3>
+          <h4 id="weather-condition" class="fw-normal text-white-70" style="font-size: 20px; margin-top: 0; margin-bottom: 0;">오산시</h4>
           <div class="d-flex gap-3 justify-content-center lead fw-normal">
             <a class="icon-link" href="#">
               Learn more
