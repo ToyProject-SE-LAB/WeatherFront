@@ -332,8 +332,8 @@
       <h3 id="weather-condition" class="fw-bold text-white" style="font-size: 20px; margin-top: 0; margin-bottom: 0;">오산시</h3>
       <h4 id="location" class="fw-normal text-white-70" style="font-size: 20px; margin-top: 0; margin-bottom: 0;">cloudy</h4>
       <div id="temperature-range" class="text-white-70" style="font-size:16px; margin-top:0; margin-bottom:20px;">
-        H: <span id="high-temp">30</span>°
-        L: <span id="low-temp">25</span>°
+          H: <span id="high-temp">30</span>°
+          L: <span id="low-temp">25</span>°
       </div>
 
       <div class="content-section">
@@ -361,25 +361,30 @@
     </div>
 
     <div class="bg-body-tertiary me-md-3 text-center overflow-hidden" style="flex: 1; padding: 0; height: 100%;">
-      <div class="shadow-sm mx-auto bg-body" style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; box-sizing: border-box; border-radius: 21px 21px 0 0;">
-        <div id="air-quality-section" class="text-body" style="height: 50%; margin-top: 15%;">
-          <div id="air-quality-title" class="fw-bold text-uppercase" style="font-size: 14px;">공기질</div>
-          <div id="air-quality-value" style="font-size: 36px; font-weight: bold;">44</div>
-          <div id="air-quality-status" style="font-size: 20px;">Good</div>
-          <div id="air-quality-bar" style="height: 5px; background: linear-gradient(to right, green, yellow, orange, red); margin-top: 10px;"></div>
-          <div id="air-quality-description" style="font-size: 12px; margin-top: 10px;">Air quality index is 44, which is better than yesterday at about this time.</div>
+      <div class="shadow-sm mx-auto bg-body" style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 10px; box-sizing: border-box; border-radius: 21px 21px 0 0;">
+        <div id="air-quality-section" class="text-body" style="margin-top: 15%;">
+            <div id="air-quality-title" class="fw-bold text-uppercase" style="font-size: 14px;">공기질</div>
+            <div id="air-quality-value" style="font-size: 36px; font-weight: bold;">Loading...</div>
+            <div id="air-quality-status" style="font-size: 20px;">Loading...</div>
+            <div id="air-quality-bar" style="height: 5px; background: linear-gradient(to right, green, yellow, orange, red); margin-top: 5px;"></div>
+            <div id="air-quality-description" style="font-size: 12px; margin-top: 5px;">Fetching data...</div>
         </div>
-        
-        <div id="wind-section" class="text-body" style="height: 50%; margin: 0;">
-          <div id="wind-speed" style="font-size: 36px; font-weight: bold;">3 M/S</div>
-          <div id="wind-description" style="font-size: 14px;">Wind</div>
-          <div id="wind-direction" style="font-size: 14px; margin-top: 10px;">
-              <i class="fa-solid fa-compass" style="font-size: 48px;"></i>
+  
+          <div id="water-section" class="text-body fw-bold text-uppercase" style="margin: 5px 0;">
+              <div id="precipitation-probability" style="font-size: 16px;">강수확률: <span id="pop-value">--</span>%</div>
+              <div id="humidity" style="font-size: 16px; margin-top: 5px;">습도: <span id="reh-value">--</span>%</div>
           </div>
-        </div>
+
+          <div id="wind-section" class="text-body" style="margin-top: 5px;">
+              <div id="wind-speed" style="font-size: 36px; font-weight: bold;">3 M/S</div>
+              <div id="wind-description" style="font-size: 14px;">Wind</div>
+              <div id="wind-direction" style="font-size: 14px; margin-bottom: 15%;">
+                  <i class="fa-solid fa-compass" style="font-size: 48px;"></i>
+              </div>
+          </div>
       </div>
-    </div>
-    
+  </div>
+
       <div class="bg-body-tertiary text-center overflow-hidden" style="flex: 1; padding: 0; margin: 0; height: 100%;">
         <div id="map" style="width: 100%; height: 100%; margin: 0; padding: 0;"></div>
       </div>
@@ -391,6 +396,152 @@
       <p>© 2024 SE LAB· <a href="#">Privacy</a> · <a href="#">Terms</a></p>
     </footer>
 </main>
+
+<script>
+  async function fetchShortWeatherData(x, y) {
+    try {
+        const response = await fetch(`/api/short-weather?x=${x}&y=${y}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const weatherData = await response.json(); 
+        const firstWeatherInfo = weatherData[0];
+
+
+        document.getElementById('temperature').textContent = `${firstWeatherInfo.tmp}°`;
+        document.getElementById('weather-condition').textContent = translateWeatherCondition(firstWeatherInfo.sky);
+        document.getElementById('location').textContent = '위치명'; 
+        document.getElementById('high-temp').textContent = firstWeatherInfo.tmx || 'N/A';
+        document.getElementById('low-temp').textContent = firstWeatherInfo.tmn || 'N/A';
+        document.getElementById('emoticon').className = getWeatherIconClass(firstWeatherInfo.sky);
+        document.getElementById('wind-speed').textContent = `${firstWeatherInfo.wsd} M/S`;
+        document.getElementById('pop-value').textContent = firstWeatherInfo.pop || '--';
+        document.getElementById('reh-value').textContent = firstWeatherInfo.reh || '--';
+
+        const windDirectionIcon = document.getElementById('wind-direction').querySelector('i');
+        windDirectionIcon.className = 'fa-solid fa-compass'; 
+
+
+    } catch (error) {
+        console.error('Fetch error:', error);
+        document.getElementById('temperature').textContent = 'N/A';
+        document.getElementById('weather-condition').textContent = 'Error fetching data';
+        document.getElementById('wind-speed').textContent = 'N/A';
+    }
+}
+
+window.onload = function() {
+    fetchShortWeatherData('60', '127'); 
+};
+
+function translateWeatherCondition(sky) {
+    switch (sky) {
+        case '1':
+            return '맑음';
+        case '3':
+            return '구름 많음';
+        case '4':
+            return '흐림';
+        default:
+            return '알 수 없음';
+    }
+}
+
+function getWeatherIconClass(sky) {
+    switch (sky) {
+        case '1':
+            return 'fa-solid fa-sun text-white';
+        case '3':
+            return 'fa-solid fa-cloud-sun text-white';
+        case '4':
+            return 'fa-solid fa-cloud text-white';
+        default:
+            return 'fa-solid fa-question text-white';
+    }
+}
+</script>
+
+<script>
+  async function fetchFinedustData(stationName) {
+    try {
+        const response = await fetch(`/api/finedust?stationName=${stationName}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const finedustData = await response.json(); // 서버에서 JSON 데이터를 가져옴
+
+        // 가장 최신의 미세먼지 데이터를 사용 (필요에 따라 데이터를 다르게 사용할 수 있음)
+        const latestFinedust = finedustData[0];
+
+        // 미세먼지 등급과 상태를 UI에 반영
+        document.getElementById('air-quality-value').textContent = getDustGrade(latestFinedust.pm10Grade);
+        document.getElementById('air-quality-status').textContent = getDustDescription(latestFinedust.pm10Grade);
+
+        // 상태에 따라 공기질 바의 색상이나 길이 등을 업데이트할 수 있습니다.
+        const barElement = document.getElementById('air-quality-bar');
+        barElement.style.width = `${latestFinedust.pm10Grade * 25}%`;  // 예시로 등급을 바 길이에 반영
+        barElement.style.background = getBarColor(latestFinedust.pm10Grade);
+
+        // 설명 업데이트
+        document.getElementById('air-quality-description').textContent = `미세먼지 등급은 ${getDustGrade(latestFinedust.pm10Grade)}이며, 상태는 ${getDustDescription(latestFinedust.pm10Grade)}입니다.`;
+
+    } catch (error) {
+        console.error('Fetch error:', error);
+        document.getElementById('air-quality-value').textContent = 'N/A';
+        document.getElementById('air-quality-status').textContent = '데이터를 가져올 수 없습니다';
+    }
+}
+
+function getDustGrade(grade) {
+    switch (grade) {
+        case "1":
+            return "좋음";
+        case "2":
+            return "보통";
+        case "3":
+            return "나쁨";
+        case "4":
+            return "매우 나쁨";
+        default:
+            return "알 수 없음";
+    }
+}
+
+function getDustDescription(grade) {
+    switch (grade) {
+        case "1":
+            return "깨끗한 공기";
+        case "2":
+            return "보통 수준의 공기";
+        case "3":
+            return "건강에 해로운 공기";
+        case "4":
+            return "매우 해로운 공기";
+        default:
+            return "데이터 없음";
+    }
+}
+
+function getBarColor(grade) {
+    switch (grade) {
+        case "1":
+            return "green";
+        case "2":
+            return "yellow";
+        case "3":
+            return "orange";
+        case "4":
+            return "red";
+        default:
+            return "grey";
+    }
+}
+
+// 페이지 로드 시 미세먼지 데이터를 가져옴
+window.onload = function() {
+    fetchFinedustData('서울'); // 원하는 측정소 이름으로 대체
+};
+</script>
 
 <script>
   function initMap() {
@@ -405,6 +556,7 @@
       });
   }
 </script>
+
 
   <script>
       document.addEventListener("DOMContentLoaded", function() {
