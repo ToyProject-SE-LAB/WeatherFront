@@ -468,21 +468,16 @@ function getWeatherIconClass(sky) {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        const finedustData = await response.json(); // 서버에서 JSON 데이터를 가져옴
-
-        // 가장 최신의 미세먼지 데이터를 사용 (필요에 따라 데이터를 다르게 사용할 수 있음)
+        const finedustData = await response.json(); 
         const latestFinedust = finedustData[0];
-
-        // 미세먼지 등급과 상태를 UI에 반영
+        
         document.getElementById('air-quality-value').textContent = getDustGrade(latestFinedust.pm10Grade);
         document.getElementById('air-quality-status').textContent = getDustDescription(latestFinedust.pm10Grade);
 
-        // 상태에 따라 공기질 바의 색상이나 길이 등을 업데이트할 수 있습니다.
         const barElement = document.getElementById('air-quality-bar');
-        barElement.style.width = `${latestFinedust.pm10Grade * 25}%`;  // 예시로 등급을 바 길이에 반영
+        barElement.style.width = `${latestFinedust.pm10Grade * 25}%`; 
         barElement.style.background = getBarColor(latestFinedust.pm10Grade);
 
-        // 설명 업데이트
         document.getElementById('air-quality-description').textContent = `미세먼지 등급은 ${getDustGrade(latestFinedust.pm10Grade)}이며, 상태는 ${getDustDescription(latestFinedust.pm10Grade)}입니다.`;
 
     } catch (error) {
@@ -537,9 +532,8 @@ function getBarColor(grade) {
     }
 }
 
-// 페이지 로드 시 미세먼지 데이터를 가져옴
 window.onload = function() {
-    fetchFinedustData('서울'); // 원하는 측정소 이름으로 대체
+    fetchFinedustData('오산'); 
 };
 </script>
 
