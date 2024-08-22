@@ -367,14 +367,15 @@
           <div id="air-quality-value" style="font-size: 36px; font-weight: bold;">Loading...</div>
           <div id="air-quality-status" style="font-size: 20px;">Loading...</div>
           <div id="air-quality-bar" style="height: 5px; background-color: gray; width: 100%; margin-top: 5px;"></div>
-          <div id="air-quality-description" style="font-size: 12px; margin-top: 5px;">Fetching data...</div>
+          <div id="air-quality-description" style="font-size: 12px; margin-top: 5px; margin-bottom: 10%;">Fetching data...</div>
       </div>
 
-          <div id="wind-section" class="text-body" style="margin-top: 5px ; margin-bottom: 30%;">
+          <div id="wind-section" class="text-body" style="margin-top: 5px ; margin-bottom: 20%;">
               <div id="wind-speed" style="font-size: 36px; font-weight: bold;">3 M/S</div>
               <div id="wind-description" style="font-size: 14px;">Wind</div>
-              <div id="wind-direction" style="font-size: 14px;">
-                <i id="compass-icon" class="fa-solid fa-compass text-body" style="font-size: 48px;"></i>
+              <div id="wind-direction" style="text-align: center; margin-bottom: 30%;">
+                <i id="compass-icon" class="fa-solid fa-compass" style="font-size: 48px;"></i>
+                <div id="wind-text" style="font-size: 14px; margin-top: 5px;"></div>
             </div>
           </div>
       </div>
@@ -409,7 +410,8 @@
         const compassIcon = document.getElementById('compass-icon');
         compassIcon.style.transform = `rotate(${windDirection}deg)`;
         document.getElementById('wind-speed').textContent = `${data.wind.windSpeed} m/s`;
-        document.getElementById('wind-direction').textContent = `풍향: ${data.wind.windDirection}°`;
+        document.getElementById('wind-text').innerHTML = `풍향: ${data.wind.windDirection}°`;
+        document.getElementById('compass-icon').style.transform = `rotate(${data.wind.windDirection}deg)`;
         
         const pm10Value = data.finedust['pm10']; //미세먼지 
         const pm25Value = data.finedust['pm2.5'];
@@ -461,7 +463,7 @@
             `;
             forecastContainer.appendChild(weatherItem);
         }
-
+            
     } catch (error) {
       console.error('Error fetching air quality data:', error);
       document.getElementById('air-quality-value').textContent = 'N/A';
@@ -563,6 +565,48 @@ function getAirQualityBar(grade) {
 
 function initMap() {
   if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        const location = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 12,
+          center: location
+        });
+        const marker = new google.maps.Marker({
+          position: location,
+          map: map
+        });
+      },
+      function(error) {
+        console.error("Error Code = " + error.code + " - " + error.message);
+        const defaultLocation = { lat: 37.5665, lng: 126.9780 }; // 서울시 기본 위치
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 12,
+          center: defaultLocation
+        });
+        const marker = new google.maps.Marker({
+          position: defaultLocation,
+          map: map
+        });
+      }
+    );
+  } else {
+    console.error("Geolocation is not supported by this browser.");
+    const defaultLocation = { lat: 37.5665, lng: 126.9780 };
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 12,
+      center: defaultLocation
+    });
+    const marker = new google.maps.Marker({
+      position: defaultLocation,
+      map: map
+    });
+  }
+}
+  if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
           function(position) {
               const location = {
@@ -603,7 +647,7 @@ function initMap() {
           map: map
       });
   }
-}
+
   window.onload = initMap;
 </script>
 
