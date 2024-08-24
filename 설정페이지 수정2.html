@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>설정 페이지</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+<style>
+  div{
+    background: rgb(237, 237, 237);
+    padding: 40px;
+    margin: 0px;
+  }
+</style>
+
+<div class="d-flex flex-column flex-md-row align-items-start">
+  
+  <!-- 온도 설정 -->
+  <div>
+    <div class="d-flex flex-column align-items-center mx-auto">
+      <div style="display: flex;">
+        <div class="dropdown-menu d-block position-static pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"
+          data-bs-theme="light" style="margin-right: auto; width: 230px;">
+          <ul class="list-unstyled mb-0">
+            <li>
+              <p style="text-align: center; font-size: 23px; margin: 20px;">온도 설정</p>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2 py-4" href="#" style="font-size: 20px;" onclick="changeImage('spring')">
+                <span class="d-inline-block bg-success rounded-circle p-1"></span>
+                봄 ( 18℃ ~ 21℃ )
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2 py-4" href="#" style="font-size: 20px;" onclick="changeImage('summer')">
+                <span class="d-inline-block bg-danger rounded-circle p-1"></span>
+                여름 ( 26℃ ~ )
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2 py-4" href="#" style="font-size: 20px;" onclick="changeImage('fall')">
+                <span class="d-inline-block bg-warning rounded-circle p-1"></span>
+                가을 ( 11℃ ~ 15℃ )
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2 py-4" href="#" style="font-size: 20px;" onclick="changeImage('winter')">
+                <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                겨울 ( ~ 8℃ )
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 옷 이미지 -->
+  <div class="d-flex flex-column align-items-center mx-auto">
+    <div>
+      <div class="card" style="width: 28rem; text-align: center;">
+        <img id="topImage" src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20230531%2Foriginal%2Fpngtree-long-sleeve-t-shirt-vector-illustration-template-png-image_9174782.png&type=sc960_832"
+        style="border: 1px solid lightgray;">
+        <p style="text-align: center; font-size: 28px; margin-top: 40px;">상의</p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <div class="card" style="width: 28rem; text-align: center;">
+        <img id="bottomImage" src="https://img.freepik.com/premium-vector/vector-single-cartoon-illustration-denim-jeans-pants-back-view_574806-475.jpg" class="card-img-top " alt="이미지 없음"
+          style="border: 1px solid lightgray;">
+        <p style="text-align: center; font-size: 28px; margin-top: 40px;">하의</p>
+      </div>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+  function changeImage(season) {
+    // 이미지 요소 선택
+    const topImage = document.getElementById('topImage');
+    const bottomImage = document.getElementById('bottomImage');
+    
+    // 계절별 이미지 변경
+    switch(season) {
+      case 'spring':
+        topImage.src = 'https://item.elandrs.com/r/image/item/2023-07-05/1d66795a-a460-40a0-9019-5df1d6f88ec6.jpg?w=750&h=&q=100'; // 봄 상의 이미지
+        bottomImage.src = 'https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2FMjAxNzA5MTJfMjMz%2FMDAxNTA1MjI4MzY0NzU1.LowF6pFkrAqsblyQITgNjzEfpPhCvbA536MULLMCEy8g.qM5b57Xx7sqW5QLbjGWqUsGEunAqa8YCGttD-GYfDRog.JPEG.sweetkissj%2FexternalFile.jpg&type=sc960_832'; // 봄 하의 이미지
+        break;
+      case 'summer':
+        topImage.src = 'https://sitem.ssgcdn.com/74/14/83/item/1000551831474_i5_750.jpg'; // 여름 상의 이미지
+        bottomImage.src = 'https://search.pstatic.net/common/?src=http%3A%2F%2Fshopping.phinf.naver.net%2Fmain_4914068%2F49140689058.20240714182556.jpg&type=sc960_832'; // 여름 하의 이미지
+        break;
+      case 'fall':
+        topImage.src = 'https://i.namu.wiki/i/WdY4-OiG4E_z3NW9Y71hv-vUAW7esAmgM6WKB2N8NQ-Wvt0ix1oMRs1yt0pL_kMiu6Ai2jhSEa_tAnwxHrypIg.webp'; // 가을 상의 이미지
+        bottomImage.src = 'https://covernat.net/web/product/big/202304/156003770479bea89f94c31cd7de4aef.jpg'; // 가을 하의 이미지
+        break;
+      case 'winter':
+        topImage.src = 'https://sitem.ssgcdn.com/62/42/20/item/1000566204262_i1_750.jpg'; // 겨울 상의 이미지
+        bottomImage.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd5vIJkAgd5V2xxX3C3Yt-F1E7rgHnSphrSQ&s'; // 겨울 하의 이미지
+        break;
+    }
+  }
+</script>
+
+</body>
+</html>
