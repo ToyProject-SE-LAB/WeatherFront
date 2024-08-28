@@ -428,7 +428,8 @@
         document.getElementById('location').textContent = data.region;
         document.getElementById('high-temp').textContent = data.weeklyArray[0].high;
         document.getElementById('low-temp').textContent = data.weeklyArray[0].low;
-
+        document.getElementById('header-weather-icon').className = `fa-solid ${weatherIcon} fa-2x`; //헤더 아이콘 변경
+        
         const windDirection = data.wind.windDirection; // 풍향 
         const compassIcon = document.getElementById('compass-icon');
         compassIcon.style.transform = `rotate(${windDirection}deg)`;
