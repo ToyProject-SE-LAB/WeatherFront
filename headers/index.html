@@ -576,6 +576,7 @@
 
         const response = await fetch('https://0d957d3e-5ca1-474e-b364-1a087f502930.mock.pstmn.io/test?lat=${data.lat}&lng=${data.lng}');
         const data = await response.json();
+        <script src="ai음성.js"></script>
         const weatherIcon = getWeatherIcon(data.shortWeather[0].description);
         document.getElementById('emoticon').className = `fa-solid ${weatherIcon} text-white`;
         document.getElementById('temperature').textContent = `${data.shortWeather[0].temp}°`;
@@ -839,7 +840,6 @@
   <script src="./assets/color-modes.js">
   </script>
   <script src="수연.js"></script>
-  <script src="ai음성.js"></script>
 </body>
 
 </html>
