@@ -1,4 +1,4 @@
-function (region, temp, high, low, description, windDirection, windSpeed, pm10, pm2.5, overallGrade){
+function (region, temp, high, low, description, windDirection, windSpeed, pm10, pm25, overallGrade){
  const XI_API_KEY = 'sk_0d53f3cc7f143353f57b79ad670f424957015c2cf2a1c73f'; // api 
   const url = 'https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM'; //목소리 불러오는 api 및 목소리 설정
   const data = {
