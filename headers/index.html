@@ -736,7 +736,7 @@
         document.getElementById('location').textContent = data.region;
         document.getElementById('high-temp').textContent = data.weeklyArray[0].high;
         document.getElementById('low-temp').textContent = data.weeklyArray[0].low;
-        document.getElementById('header-weather-icon').className = `fa-solid ${weatherIcon} fa-2x`; //헤더 아이콘 변경
+        //document.getElementById('header-weather-icon').className = `fa-solid ${weatherIcon} fa-2x`; //헤더 아이콘 변경
         
         const windDirection = data.wind.windDirection; // 풍향 
         const compassIcon = document.getElementById('compass-icon');
@@ -984,7 +984,7 @@
   </script>
 
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOSDJTx_1z5iXy55T1SrMzo8RLDERNi18&callback=initMap"
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVkWmm1-tqb0cTgVZ9jnDiRGRg76Kp9Wo&callback=initMap"
     async defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
