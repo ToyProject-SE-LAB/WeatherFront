@@ -16,6 +16,19 @@
   <link href="./headers.css" rel="stylesheet">
 
   <style>
+    @media (max-width: 768px) {
+      #air-quality-section, #wind-section {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+    }
+    @media (min-width: 768px) {
+      #air-quality-section, #wind-section {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+      }
+    }
+
     .text-white-70 {
       color: rgba(255, 255, 255, 0.7);
     }
@@ -354,31 +367,29 @@
           </div>
         </div>
 
-        <div class="bg-body-tertiary me-md-3 text-center overflow-hidden" style="flex: 1; padding: 0; height: 100%;">
-          <div class="shadow-sm mx-auto bg-body"
-            style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; border-radius: 21px 21px 0 0;">
-            <div id="air-quality-section" class="text-body" style="margin-top: 10%;">
-              <div id="air-quality-title" class="fw-bold text-uppercase" style="font-size: 14px;">공기질 (미세먼지 / 초미세먼지)
-              </div>
-                <i id="dust-icon" class="fa-solid fa-question" style="font-size: 80px; margin-top: 10px"></i>
-              <div id="air-quality-value" style="font-size: 36px; font-weight: bold;">Loading...</div>
-              <div id="air-quality-status" style="font-size: 20px;">Loading...</div>
-              <div id="air-quality-bar" style="height: 5px; background-color: gray; width: 100%; margin-top: 5px;">
-              </div>
-              <div id="air-quality-description" style="font-size: 12px; margin-top: 5px; margin-bottom: 10%;">Fetching
-                data...</div>
-            </div>
+        <div class="bg-body-tertiary me-md-3 text-center overflow-hidden d-flex flex-column justify-content-between" style="flex: 1; padding: 0; height: 100%;">
+        <div class="shadow-sm mx-auto bg-body" style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; border-radius: 21px 21px 0 0; padding: 20px;">
+    
+        <div id="air-quality-section" class="text-body my-3">
+          <div id="air-quality-title" class="fw-bold text-uppercase" style="font-size: 14px;">공기질 (미세먼지 / 초미세먼지)</div>
+          <i id="dust-icon" class="fa-solid fa-question" style="font-size: 80px; margin-top: 10px"></i>
+          <div id="air-quality-value" style="font-size: 36px; font-weight: bold;">Loading...</div>
+          <div id="air-quality-status" style="font-size: 20px;">Loading...</div>
+          <div id="air-quality-bar" style="height: 5px; background-color: gray; width: 100%; margin-top: 5px;"></div>
+          <div id="air-quality-description" style="font-size: 12px; margin-top: 5px;">Fetching data...</div>
+      </div>
 
-            <div id="wind-section" class="text-body" style="margin-top: 5px ; margin-bottom: 20%;">
-              <div id="wind-direction" style="text-align: center; margin-bottom: 30%;">
-                <i id="compass-icon" class="fa-solid fa-compass" style="font-size: 100px;"></i>
-                <div id="wind-text" style="font-size: 14px; margin-top: 5px;"></div>
-              <div id="wind-speed" style="font-size: 36px; font-weight: bold;">3 M/S</div>
-              <div id="wind-description" style="font-size: 14px;">Wind</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="wind-section" class="text-body my-3">
+        <div id="wind-direction" class="d-flex flex-column align-items-center">
+        <i id="compass-icon" class="fa-solid fa-compass" style="font-size: 100px;"></i>
+        <div id="wind-text" style="font-size: 14px;"></div>
+        <div id="wind-speed" style="font-size: 36px; font-weight: bold;">3 M/S</div>
+        <div id="wind-description" style="font-size: 14px; margin-bottom: 10%;">Wind</div>
+      </div>
+      </div>
+    </div>
+  </div>
+
 
         <div class="bg-body-tertiary text-center overflow-hidden" style="flex: 1; padding: 0; margin: 0; height: 100%;">
           <div id="map" style="width: 100%; height: 100%; margin: 0; padding: 0;"></div>
