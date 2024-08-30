@@ -683,6 +683,11 @@
           }
         };
 
+    function WeatherReport(region, temp, high, low, description, windDirection, windSpeed, pm10, pm25, overallGrade) {
+    return region, temp, high, low, description, windDirection, windSpeed, pm10, pm25, overallGrade.toFixed(2);
+}
+
+  WeatherReport(region, temp, high, low, description, windDirection, windSpeed, pm10, pm25, overallGrade);
     
     /* function WeatherReport(region, temp, high, low, description, windDirection, windSpeed, pm10, pm25, overallGrade){
     return { region, temp, high, low, description, windDirection, windSpeed, pm10, pm25, overallGrade };
