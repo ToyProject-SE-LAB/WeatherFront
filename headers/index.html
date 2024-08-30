@@ -380,9 +380,10 @@
         <div class="bg-body-tertiary me-md-3 text-center overflow-hidden" style="flex: 1; padding: 0; height: 100%;">
           <div class="shadow-sm mx-auto bg-body"
             style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; border-radius: 21px 21px 0 0;">
-            <div id="air-quality-section" class="text-body" style="margin-top: 20%;">
+            <div id="air-quality-section" class="text-body" style="margin-top: 10%;">
               <div id="air-quality-title" class="fw-bold text-uppercase" style="font-size: 14px;">공기질 (미세먼지 / 초미세먼지)
               </div>
+                <i id="dust-icon" class="fa-solid fa-question" style="font-size: 80px; margin-top: 10px;"></i>
               <div id="air-quality-value" style="font-size: 36px; font-weight: bold;">Loading...</div>
               <div id="air-quality-status" style="font-size: 20px;">Loading...</div>
               <div id="air-quality-bar" style="height: 5px; background-color: gray; width: 100%; margin-top: 5px;">
@@ -392,11 +393,11 @@
             </div>
 
             <div id="wind-section" class="text-body" style="margin-top: 5px ; margin-bottom: 20%;">
+              <div id="wind-direction" style="text-align: center; margin-bottom: 30%;">
+                <i id="compass-icon" class="fa-solid fa-compass" style="font-size: 100px;"></i>
+                <div id="wind-text" style="font-size: 14px; margin-top: 5px;"></div>
               <div id="wind-speed" style="font-size: 36px; font-weight: bold;">3 M/S</div>
               <div id="wind-description" style="font-size: 14px;">Wind</div>
-              <div id="wind-direction" style="text-align: center; margin-bottom: 30%;">
-                <i id="compass-icon" class="fa-solid fa-compass" style="font-size: 48px;"></i>
-                <div id="wind-text" style="font-size: 14px; margin-top: 5px;"></div>
               </div>
             </div>
           </div>
@@ -414,7 +415,7 @@
             <div class="p-3 mb-2 text-dark-emphasis" >
   <legend class="text-center">오늘의 옷 추천</legend>
   <script src="https://e7.pngegg.com/pngimages/442/16/png-clipart-computer-icons-man-icon-logo-silhouette.png" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-   <div class="container text-center">
+  <div class="container text-center">
     <div class="row row-cols-auto">
       <div class="col">
         <div class="card" style="width: 13rem;">
@@ -736,7 +737,7 @@
         document.getElementById('location').textContent = data.region;
         document.getElementById('high-temp').textContent = data.weeklyArray[0].high;
         document.getElementById('low-temp').textContent = data.weeklyArray[0].low;
-        //document.getElementById('header-weather-icon').className = `fa-solid ${weatherIcon} fa-2x`; //헤더 아이콘 변경
+        document.getElementById('header-weather-icon').className = `fa-solid ${weatherIcon} fa-2x`; //헤더 아이콘 변경
         
         const windDirection = data.wind.windDirection; // 풍향 
         const compassIcon = document.getElementById('compass-icon');
@@ -751,6 +752,8 @@
         const pm25Grade = getPM25Grade(pm25Value);
         const overallGrade = getOverallAirQualityGrade(pm10Grade, pm25Grade);
         const airQualityBarInfo = getAirQualityBar(overallGrade);
+        const dustIconClass = getDustIcon(overallGrade);
+        document.getElementById('dust-icon').className = `fa-solid ${dustIconClass}`;
         document.getElementById('air-quality-value').textContent = `${pm25Value} (${pm25Grade}) / ${pm10Value} (${pm10Grade})`;
         document.getElementById('air-quality-status').textContent = overallGrade;
         document.getElementById('air-quality-description').textContent = `공기질 등급은 ${overallGrade} 상태입니다.`;
@@ -758,6 +761,20 @@
         airQualityBar.style.width = `${airQualityBarInfo.widthPercentage}%`;
         airQualityBar.style.backgroundColor = airQualityBarInfo.color;
 
+        function getDustIcon(grade) {
+          switch (grade) {
+            case "매우 나쁨":
+              return "fa-face-dizzy";
+            case "나쁨":
+              return "fa-face-frown";
+            case "보통":
+              return "fa-face-meh-blank";
+            case "좋음":
+              return "fa-face-grin-squint";
+            default:
+              return "fa-question"; // 등급이 없을 경우 기본 아이콘
+          }
+        };
 
         const weatherTableBody = document.getElementById("weather-table-body"); //주간 날씨 테이블
         weatherTableBody.innerHTML = '';
