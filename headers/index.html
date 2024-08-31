@@ -501,75 +501,78 @@
           </div>
         </div>
 
-        <div class="col-6">
-          <div class="d-flex flex-column flex-md-row align-items-start">
+        <div class="col-6" style="background-color:#fff;">
+          <div class="d-flex flex-column flex-md-row align-items-start"style="margin:110px;">
 
             <!-- 온도 설정 -->
-            <div>
-              <div class="d-flex flex-column align-items-center mx-auto">
-                <div style="display: flex;">
-                  <div class="dropdown-menu d-block position-static pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"
-                    data-bs-theme="light" style="margin-right: auto; width: 220px;">
-                    <ul class="list-unstyled mb-0">
-                      <li>
-                        <p style="text-align: center; font-size: 18px; margin: 15px;">온도 설정</p>
-                      </li>
-                      <li>
-                        <hr class="dropdown-divider">
-                      </li>
-                      <li>
-                        <a class="dropdown-item d-flex align-items-center gap-2 py-4" href="#" style="font-size: 19px;"
-                          onclick="changeImage('spring')">
-                          <span class="d-inline-block bg-success rounded-circle p-1"></span>
-                          봄 ( 18℃ ~ 21℃ )
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item d-flex align-items-center gap-2 py-4" href="#" style="font-size: 19px;"
-                          onclick="changeImage('summer')">
-                          <span class="d-inline-block bg-danger rounded-circle p-1"></span>
-                          여름 ( 26℃ ~ )
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item d-flex align-items-center gap-2 py-4" href="#" style="font-size: 19px;"
-                          onclick="changeImage('fall')">
-                          <span class="d-inline-block bg-warning rounded-circle p-1"></span>
-                          가을 ( 11℃ ~ 15℃ )
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item d-flex align-items-center gap-2 py-4" href="#" style="font-size: 19px;"
-                          onclick="changeImage('winter')">
-                          <span class="d-inline-block bg-primary rounded-circle p-1"></span>
-                          겨울 ( ~ 8℃ )
-                        </a>
-                      </li>
-                    </ul>
+            <div class="col-sm my-3" style="align-items:center; display: flex; justify-content:center;">
+              <div>
+                <div class="d-flex flex-column align-items-center mx-auto">
+                  <div style="display: flex;">
+                    <div
+                      class="dropdown-menu d-block position-static pt-0 mx-0 rounded-3 shadow overflow-hidden w-280px"
+                      data-bs-theme="light" style="margin-right: auto; width: 220px;">
+                      <ul class="list-unstyled mb-0">
+                        <li>
+                          <p style="text-align: center; font-size: 18px; margin: 15px;">온도 설정</p>
+                        </li>
+                        <li>
+                          <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                          <a class="dropdown-item d-flex align-items-center gap-2 py-4" href="#"
+                            style="font-size: 19px;" onclick="changeImage('spring')">
+                            <span class="d-inline-block bg-success rounded-circle p-1"></span>
+                            봄 ( 18℃ ~ 21℃ )
+                          </a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item d-flex align-items-center gap-2 py-4" href="#"
+                            style="font-size: 19px;" onclick="changeImage('summer')">
+                            <span class="d-inline-block bg-danger rounded-circle p-1"></span>
+                            여름 ( 26℃ ~ )
+                          </a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item d-flex align-items-center gap-2 py-4" href="#"
+                            style="font-size: 19px;" onclick="changeImage('fall')">
+                            <span class="d-inline-block bg-warning rounded-circle p-1"></span>
+                            가을 ( 11℃ ~ 15℃ )
+                          </a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item d-flex align-items-center gap-2 py-4" href="#"
+                            style="font-size: 19px;" onclick="changeImage('winter')">
+                            <span class="d-inline-block bg-primary rounded-circle p-1"></span>
+                            겨울 ( ~ 8℃ )
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- 옷 이미지 -->
-            <div class="d-flex flex-column align-items-center mx-auto">
-              <div>
-                <div class="card" style="width: 21rem; text-align: center;">
-                  <img id="topImage"
-                    src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20230531%2Foriginal%2Fpngtree-long-sleeve-t-shirt-vector-illustration-template-png-image_9174782.png&type=sc960_832"
-                    style="border: 1px solid lightgray;">
-                  <p style="text-align: center; font-size: 25px; margin-top: 30px;">상의</p>
+              <!-- 옷 이미지 -->
+              <div class="d-flex flex-column align-items-center mx-auto">
+                <div>
+                  <div class="card mx-3" style="width: 19rem; text-align: center;">
+                    <img id="topImage"
+                      src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20230531%2Foriginal%2Fpngtree-long-sleeve-t-shirt-vector-illustration-template-png-image_9174782.png&type=sc960_832"
+                      style="border: 1px solid lightgray;">
+                    <p style="text-align: center; font-size: 25px; margin-top: 30px;">상의</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div>
-              <div>
-                <div class="card" style="width: 21rem; text-align: center;">
-                  <img id="bottomImage"
-                    src="https://img.freepik.com/premium-vector/vector-single-cartoon-illustration-denim-jeans-pants-back-view_574806-475.jpg"
-                    class="card-img-top " alt="이미지 없음" style="border: 1px solid lightgray;">
-                  <p style="text-align: center; font-size: 25px; margin-top: 30px;">하의</p>
+              <div class="d-flex flex-column align-items-center mx-auto">
+                <div>
+                  <div class="card" style="width: 19rem; text-align: center;">
+                    <img id="bottomImage"
+                      src="https://img.freepik.com/premium-vector/vector-single-cartoon-illustration-denim-jeans-pants-back-view_574806-475.jpg"
+                      style="border: 1px solid lightgray;">
+                    <p style="text-align: center; font-size: 25px; margin-top: 30px;">하의</p>
+                  </div>
                 </div>
               </div>
             </div>
