@@ -334,6 +334,14 @@
                 </li>
                 <li><a class="dropdown-item" href="#">Sign out</a></li>
               </ul>
+
+              <!--음성 버튼-->
+             <div class="d-grid gap-2 d-md-block">
+               <button class="btn btn-primary" type="button">재생</button>
+                <button class="btn btn-primary" type="button">일시정지</button>
+                <button class="btn btn-primary" type="button">중단</button>
+              </div>
+
             </div>
           </div>
         </div>
@@ -701,6 +709,9 @@
             "windSpeed": "6.2"
           }
         };
+
+        //ai음성 함수 호출
+        WeatherReport(data.region, data.shortWeather[0].temp, data.weeklyArray[0].high, data.weeklyArray[0].low, description, data.shortWeather[0].description, data.wind.windSpeed, data.finedust['pm10'], data.finedust['pm2.5'], overallGrade)
 
         /*  function WeatherReport(region, temp, high, low, description, windDirection, windSpeed, pm10, pm25, overallGrade) {
           return region, temp, high, low, description, windDirection, windSpeed, pm10, pm25, overallGrade.toFixed(2);
