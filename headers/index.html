@@ -714,9 +714,6 @@
           }
         };
 
-        //ai음성 함수 호출
-        WeatherReport(data.region, data.shortWeather[0].temp, data.weeklyArray[0].high, data.weeklyArray[0].low, description, data.shortWeather[0].description, data.wind.windSpeed, data.finedust['pm10'], data.finedust['pm2.5'], overallGrade)
-
         /*  function WeatherReport(region, temp, high, low, description, windDirection, windSpeed, pm10, pm25, overallGrade) {
           return region, temp, high, low, description, windDirection, windSpeed, pm10, pm25, overallGrade.toFixed(2);
       }
@@ -810,6 +807,9 @@
               return "fa-question"; // 등급이 없을 경우 기본 아이콘
           }
         };
+
+          //ai음성 함수 호출
+        WeatherReport(data.region, data.shortWeather[0].temp, data.weeklyArray[0].high, data.weeklyArray[0].low, data.shortWeather[0].description, data.wind.windSpeed, data.finedust['pm10'], data.finedust['pm2.5'], overallGrade)
 
         const weatherTableBody = document.getElementById("weather-table-body"); //주간 날씨 테이블
         weatherTableBody.innerHTML = '';
