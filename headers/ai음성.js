@@ -38,3 +38,20 @@ document.getElementById('play').addEventListener('click', async function () {
     console.error('에러:', error);
   }
 });
+
+//재생 및 일시정지
+document.getElementById('pause').addEventListener('click', function () {
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+});
+
+//중단
+document.getElementById('stop').addEventListener('click', function () {
+  if (audio) {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+});
